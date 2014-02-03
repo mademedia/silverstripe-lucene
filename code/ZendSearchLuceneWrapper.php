@@ -403,7 +403,8 @@ class ZendSearchLuceneWrapper {
         }
         $indexed = array();
         foreach( $extendedClasses as $className ) {
-            $config = singleton($className)->getLuceneClassConfig();
+            $o = new $className();
+            $config = $o->getLuceneClassConfig();
             $query = Object::create('SQLQuery');
             $baseClass = ClassInfo::baseDataClass($className);
             $query->select("\"$baseClass\".\"ID\"", "\"$baseClass\".\"ClassName\"");
